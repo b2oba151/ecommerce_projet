@@ -60,7 +60,7 @@ client.connect((err) => {
   };
   routes.post("/products/add", jsonParser, function (req, res) {
     products
-      .insertOne(exampleObj)
+      .insertOne(req.body)
       .then(() => res.status(200).send("successfully inserted new document"))
       .catch((err) => {
         console.log(err);
