@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 const routes = express.Router();
-app.use("/api", routes);
+app.use("/api", routes);// /api est le repertoire et non /
 
 // body-parser
 routes.use(bodyParser.urlencoded({ extended: false }));
@@ -42,7 +42,7 @@ client.connect((err) => {
   routes.get("/products", function (req, res) {
     products
       .find()
-      .toArray()
+      .toArray()//mettre la sorite sous forme de tableau
       .then((error, results) => {
         if (error) {
           return res.send(error);
@@ -53,14 +53,14 @@ client.connect((err) => {
   });
 
   const exampleObj = {
-    id: 29999,
-    category: "Clothes",
-    name: "Winter Jacket for Women, All sizes",
-    price: 79,
+   " id": 2999999,
+    "category": "Clothes",
+    "name": "Winter Jacket for Women, All sizes",
+    "price": 79,
   };
   routes.post("/products/add", jsonParser, function (req, res) {
     products
-      .insertOne(req.body)
+      .insertOne(exampleObj)
       .then(() => res.status(200).send("successfully inserted new document"))
       .catch((err) => {
         console.log(err);
